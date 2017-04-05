@@ -1,0 +1,136 @@
+mjml
+  mj-head
+    mj-font(name="Oswald", href="https://fonts.googleapis.com/css?family=Oswald")
+    mj-style(inline="inline").
+      h1, h2, h3, h4, h5, h6 {
+        margin: 0;
+        margin-bottom: 0.3em;
+      }
+      h2:not(.film-title) {
+        padding-top: 0.3em;
+      }
+      h1, h2 {
+        font-family: Oswald, Helvetica, Arial, sans-serif;
+      }
+      h3, h4, h5 {
+        font-weight: normal;
+      }
+      h1 {
+        line-height: 32px;
+        color: #052443;
+      }
+      .mj-column-per-100 p:first-of-type {
+        line-height: 22px;
+        font-size: 18px;
+      }
+      a {
+        color: /*#2ba6cb*/ #435a72;
+        text-decoration-skip: ink;
+      }
+    mj-attributes
+      mj-section(background-color="#fff", padding="0")
+      mj-divider(border-width="4px", border-color="#294158")
+  mj-body
+    mj-container(background-color="#f0f0f0")
+      // Heading bar
+      mj-section(background-url="https://www.imperialcinema.co.uk/static/email/email_header_bg.png", background-repeat="repeat-x", full-width="full-width")
+        mj-column
+          mj-image(href="https://www.imperialcinema.co.uk", src="https://www.imperialcinema.co.uk/static/email/email_header.png", padding="0 25px", padding-top="22px", padding-bottom="30px", align="left", width="446px")
+
+      // Email intro
+      mj-section(padding-top="20px")
+        mj-column
+          mj-text(padding="0 25px")!=headHTML
+
+      // Films
+      mj-section
+        mj-column
+          mj-divider
+      each film in films
+        mj-section
+          mj-column(width="30%")
+            mj-image(src=film['img_url'], href=film['link'])
+          mj-column(width="70%")
+            mj-text
+              h2.film-title
+                a(href=film['link'])= film['name']
+              each showing in film['showings']
+                - var showingDate = moment(showing.time)
+                h3
+                  strong= showingDate.format('dddd')
+                  = showingDate.format(' Do MMMM @ ')
+                  strong= showingDate.format('HH:mm')
+                  if showing.bonus
+                    |  - 
+                    em= showing.bonus
+              if film.pricing
+                h4!= film['pricing']
+              p= film['synopsis']
+        mj-section
+          mj-column
+            mj-divider
+
+      //-
+        mj-section
+          mj-column(width="30%")
+            mj-image(src="https://www.imperialcinema.co.uk/media/filer_public_thumbnails/filer_public/3a/d7/3ad7bee1-22c7-46a1-aa16-850f5f5d6ff8/national-theatre-live-twelfth-night-twelfth20night-portraitposter.jpg__210x10000_q85_subsampling-2.jpg", href="https://www.imperialcinema.co.uk/films/national-theatre-live-twelfth-night/")
+          mj-column(width="70%")
+            mj-text
+              h2.film-title
+                a(href="https://www.imperialcinema.co.uk/films/national-theatre-live-twelfth-night/") National Theatre Live: Twelfth Night
+              h3
+                | <strong>Thursday</strong> 6th April @ <strong>19:00</strong> - <em>NT Live via Satellite</em>
+              h4
+                | <strong>£5</strong> Concessions / <strong>£10</strong> Adult
+              p Simon Godwin (Man and Superman, The Beaux' Stratagem) directs this joyous new adaptation of the Shakespearean classic with Tamsin Greig as a transformed Malvolia.</p>
+        mj-section
+          mj-column
+            mj-divider
+
+
+      // Ticket Pricing
+      mj-section(background-color="#ecf8ff")
+        mj-column
+          mj-text
+            h2 Standard Ticket Pricing
+            p
+            p Single Film: <strong>£3</strong> with Discount Pass / <strong>£4</strong> without
+            p Double Bill: <strong>£5</strong> with Discount Pass / <strong>£7</strong> without</p>
+            p Season Tickets: £10 <a href="https://tickets.imperialcinema.co.uk">Buy now!</a></p>
+            p
+              a(href="https://join.imperialcinema.co.uk") Buy the Year Discount Pass Online for £5, includes 1 free film!
+            p
+              em Doors open 15 minutes before listed start times. All tickets sold on the door except where otherwise indicated.
+
+      // Say hi
+      mj-section
+        mj-column
+          mj-text
+            h2 Say hi!
+          mj-button(background-color="#3b5998", width="100%", href="https://www.facebook.com/ImperialCinema/") Facebook
+          mj-button(background-color="#00acee", width="100%", href="https://twitter.com/Imperial_Cinema") Twitter
+          mj-button(background-color="#dd4b39", width="100%", href="mailto:cinema@imperial.ac.uk") Email
+        mj-column
+          mj-text(padding-bottom="0")
+            h2 Where are we?
+            p Imperial Cinema is on Level 2M of the Imperial College Union Building in Beit Quad.
+          mj-location(address="Imperial Cinema, Beit Quadrangle, Prince Consort Road, SW7 2BB", img-src="https://www.imperialcinema.co.uk/static/email/pushpin.png", padding-top="0")
+
+      // Sponsorship
+      mj-section(background-color="#ecf8ff")
+        mj-column
+          mj-text(align="center", padding-bottom="0")
+            h2 Imperial Cinema is proudly sponsored by:
+          mj-image(src="https://www.imperialcinema.co.uk/static/email/paconsulting.png", width="100px", href="http://www.paconsulting.com", padding="0")
+          mj-text(align="center", padding-top="0")
+            a(href="http://www.paconsulting.com") PA Consulting
+
+      mj-section(background-color="#f0f0f0")
+        mj-column
+          mj-text(align="center")
+            |
+            a(href="mailto:cinema@imperial.ac.uk") Email us
+            |  | 
+            a(href="https://www.imperialcinema.co.uk") Our website
+            |  | 
+            a(href="https://mailman.ic.ac.uk/mailman/options/cinema-list") Unsubscribe
