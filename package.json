@@ -21,10 +21,11 @@
     "urlsafe-base64": "^1.0.0"
   },
   "scripts": {
-    "test": "babel-node test.js | faucet",
-    "start": "nodemon app.js --exec babel-node",
-    "build": "NODE_ENV=production webpack --config webpack.config.babel.js -p",
-    "build-dev": "webpack --config webpack.config.babel.js",
+    "serve": "NODE_ENV=production node dist/app.js",
+    "build": "NODE_ENV=production webpack --config webpack.config.babel.js -p && NODE_ENV=production babel lib -d dist",
+
+    "test": "babel-node lib/test.js | faucet",
+    "start": "nodemon lib/app.js --exec babel-node",
     "watch-client": "webpack --config webpack.config.babel.js --watch"
   },
   "name": "emailinator",

@@ -5,7 +5,7 @@ export default {
   entry: './frontend/index.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'static', 'dist')
+    path: path.resolve(__dirname, 'dist', 'static')
   },
   module: {
     rules: [
