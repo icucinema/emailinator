@@ -111,7 +111,6 @@ class MailForm extends React.Component {
   }
 
   disableSubmit() {
-    return false
     if (this.props.disableSubmit) return true
     if (this.state.headText.indexOf('Cinema Meddler') !== -1) return true
     if (this.state.headText.indexOf('This Heading is the Best') !== -1) return true
