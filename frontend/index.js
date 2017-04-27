@@ -64,6 +64,7 @@ class MailForm extends React.Component {
     this.props.onChange({
       headHTML: this.converter.makeHtml(state.headText),
       template: state.template,
+      subject: state.subject,
     })
   }
 
@@ -192,11 +193,11 @@ And including [links](https://www.imperialcinema.co.uk) is easy too!
     return ret
   }
 
-  handleFormChange({ headHTML, template }) {
+  handleFormChange({ headHTML, template, subject }) {
     if (this.state.template != template)
       this.refreshTemplate(template)
-    if (this.state.headHTML != headHTML)
-      this.setState({headHTML: headHTML})
+    if (this.state.headHTML != headHTML || this.state.subject != subject)
+      this.setState({headHTML: headHTML, subject: subject})
   }
 
   handleFormSubmit() {
