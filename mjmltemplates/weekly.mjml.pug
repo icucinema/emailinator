@@ -58,7 +58,7 @@ mjml
                 - var showingDate = moment(showing.time)
                 h3
                   strong= showingDate.format('dddd')
-                  = showingDate.format(' Do MMMM @ ')
+                  strong= showingDate.format(' Do MMMM @ ')
                   strong= showingDate.format('HH:mm')
                   if showing.bonus
                     |  - 
